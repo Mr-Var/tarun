@@ -1,6 +1,6 @@
 {
   "hero": {
-    "eyebrow": "24/7 Emergency & Outpatient Care",
+    "eyebrow": "24/7 Emergency & Outpatient Care [ADMIN TEST OK]",
     "headingPrefix": "Care that keeps ",
     "headingEmphasis": "watch",
     "headingSuffix": ", day and night.",
@@ -12,39 +12,182 @@
     "cityName": "Visakhapatnam"
   },
   "departments": [
-    { "id": "cardiology",  "name": "Cardiology",       "blurb": "Heart health, from checkups to catheter labs." },
-    { "id": "orthopedics", "name": "Orthopedics",       "blurb": "Joint, bone, and sports injury care." },
-    { "id": "medicine",    "name": "General Medicine",  "blurb": "Everyday illness and preventive care." },
-    { "id": "pediatrics",  "name": "Pediatrics",        "blurb": "Child health from infancy through teens." },
-    { "id": "ent",         "name": "ENT",               "blurb": "Ear, nose, and throat specialists." },
-    { "id": "dermatology", "name": "Dermatology",       "blurb": "Skin, hair, and nail conditions." },
-    { "id": "gynecology",  "name": "Gynecology",        "blurb": "Women's health at every stage of life." }
+    {
+      "id": "cardiology",
+      "name": "Cardiology",
+      "blurb": "Heart health, from checkups to catheter labs."
+    },
+    {
+      "id": "orthopedics",
+      "name": "Orthopedics",
+      "blurb": "Joint, bone, and sports injury care."
+    },
+    {
+      "id": "medicine",
+      "name": "General Medicine",
+      "blurb": "Everyday illness and preventive care."
+    },
+    {
+      "id": "pediatrics",
+      "name": "Pediatrics",
+      "blurb": "Child health from infancy through teens."
+    },
+    {
+      "id": "ent",
+      "name": "ENT",
+      "blurb": "Ear, nose, and throat specialists."
+    },
+    {
+      "id": "dermatology",
+      "name": "Dermatology",
+      "blurb": "Skin, hair, and nail conditions."
+    },
+    {
+      "id": "gynecology",
+      "name": "Gynecology",
+      "blurb": "Women's health at every stage of life."
+    }
   ],
   "doctors": [
-    { "id": "d1",  "name": "Dr. Elena Marsh",     "deptId": "cardiology",  "status": "In Consultation", "exp": 18 },
-    { "id": "d2",  "name": "Dr. Arjun Mehta",     "deptId": "cardiology",  "status": "Available",       "exp": 11 },
-    { "id": "d3",  "name": "Dr. Rajan Bhatt",     "deptId": "orthopedics", "status": "In Consultation", "exp": 14 },
-    { "id": "d4",  "name": "Dr. Grace Okafor",    "deptId": "orthopedics", "status": "Available",       "exp": 9 },
-    { "id": "d5",  "name": "Dr. Priya Nair",      "deptId": "medicine",    "status": "In Consultation", "exp": 16 },
-    { "id": "d6",  "name": "Dr. Daniel Kessler",  "deptId": "medicine",    "status": "Available",       "exp": 7 },
-    { "id": "d7",  "name": "Dr. Tomás Reyes",  "deptId": "pediatrics",  "status": "On Break",        "exp": 12 },
-    { "id": "d8",  "name": "Dr. Lena Petrova",    "deptId": "pediatrics",  "status": "Available",       "exp": 8 },
-    { "id": "d9",  "name": "Dr. Aisha Farouk",    "deptId": "ent",         "status": "In Consultation", "exp": 15 },
-    { "id": "d10", "name": "Dr. Sam O'Brien",     "deptId": "ent",         "status": "Off Duty",        "exp": 10 },
-    { "id": "d11", "name": "Dr. Wei Chen",        "deptId": "dermatology", "status": "Available",       "exp": 13 },
-    { "id": "d12", "name": "Dr. Noor Haddad",     "deptId": "dermatology", "status": "In Consultation", "exp": 6 },
-    { "id": "d13", "name": "Dr. Sofia Lindqvist", "deptId": "gynecology",  "status": "In Consultation", "exp": 20 },
-    { "id": "d14", "name": "Dr. Meera Iyer",      "deptId": "gynecology",  "status": "Available",       "exp": 9 }
+    {
+      "id": "d1",
+      "name": "Dr. Elena Marsh",
+      "deptId": "cardiology",
+      "status": "In Consultation",
+      "exp": 18
+    },
+    {
+      "id": "d2",
+      "name": "Dr. Arjun Mehta",
+      "deptId": "cardiology",
+      "status": "Available",
+      "exp": 11
+    },
+    {
+      "id": "d3",
+      "name": "Dr. Rajan Bhatt",
+      "deptId": "orthopedics",
+      "status": "In Consultation",
+      "exp": 14
+    },
+    {
+      "id": "d4",
+      "name": "Dr. Grace Okafor",
+      "deptId": "orthopedics",
+      "status": "Available",
+      "exp": 9
+    },
+    {
+      "id": "d5",
+      "name": "Dr. Priya Nair",
+      "deptId": "medicine",
+      "status": "In Consultation",
+      "exp": 16
+    },
+    {
+      "id": "d6",
+      "name": "Dr. Daniel Kessler",
+      "deptId": "medicine",
+      "status": "Available",
+      "exp": 7
+    },
+    {
+      "id": "d7",
+      "name": "Dr. Tomás Reyes",
+      "deptId": "pediatrics",
+      "status": "On Break",
+      "exp": 12
+    },
+    {
+      "id": "d8",
+      "name": "Dr. Lena Petrova",
+      "deptId": "pediatrics",
+      "status": "Available",
+      "exp": 8
+    },
+    {
+      "id": "d9",
+      "name": "Dr. Aisha Farouk",
+      "deptId": "ent",
+      "status": "In Consultation",
+      "exp": 15
+    },
+    {
+      "id": "d10",
+      "name": "Dr. Sam O'Brien",
+      "deptId": "ent",
+      "status": "Off Duty",
+      "exp": 10
+    },
+    {
+      "id": "d11",
+      "name": "Dr. Wei Chen",
+      "deptId": "dermatology",
+      "status": "Available",
+      "exp": 13
+    },
+    {
+      "id": "d12",
+      "name": "Dr. Noor Haddad",
+      "deptId": "dermatology",
+      "status": "In Consultation",
+      "exp": 6
+    },
+    {
+      "id": "d13",
+      "name": "Dr. Sofia Lindqvist",
+      "deptId": "gynecology",
+      "status": "In Consultation",
+      "exp": 20
+    },
+    {
+      "id": "d14",
+      "name": "Dr. Meera Iyer",
+      "deptId": "gynecology",
+      "status": "Available",
+      "exp": 9
+    }
   ],
   "waitStats": {
-    "cardiology": 6, "orthopedics": 3, "medicine": 11, "pediatrics": 4, "ent": 2, "dermatology": 5, "gynecology": 0
+    "cardiology": 6,
+    "orthopedics": 3,
+    "medicine": 11,
+    "pediatrics": 4,
+    "ent": 2,
+    "dermatology": 5,
+    "gynecology": 0
   },
   "wards": [
-    { "id": "general",   "name": "General Ward", "total": 80, "occupied": 61 },
-    { "id": "icu",       "name": "ICU",          "total": 16, "occupied": 11 },
-    { "id": "emergency", "name": "Emergency",    "total": 24, "occupied": 15 },
-    { "id": "pediatric", "name": "Pediatric",    "total": 30, "occupied": 17 },
-    { "id": "maternity", "name": "Maternity",    "total": 20, "occupied": 8 }
+    {
+      "id": "general",
+      "name": "General Ward",
+      "total": 80,
+      "occupied": 61
+    },
+    {
+      "id": "icu",
+      "name": "ICU",
+      "total": 16,
+      "occupied": 11
+    },
+    {
+      "id": "emergency",
+      "name": "Emergency",
+      "total": 24,
+      "occupied": 15
+    },
+    {
+      "id": "pediatric",
+      "name": "Pediatric",
+      "total": 30,
+      "occupied": 17
+    },
+    {
+      "id": "maternity",
+      "name": "Maternity",
+      "total": 20,
+      "occupied": 8
+    }
   ],
   "packages": [
     {
@@ -52,7 +195,13 @@
       "price": "₹1,999",
       "badge": "",
       "style": "ghost",
-      "features": ["Complete blood count", "Blood sugar (fasting)", "Lipid profile", "Kidney & liver function", "General physician review"],
+      "features": [
+        "Complete blood count",
+        "Blood sugar (fasting)",
+        "Lipid profile",
+        "Kidney & liver function",
+        "General physician review"
+      ],
       "cta": "Enquire about this package"
     },
     {
@@ -60,7 +209,13 @@
       "price": "₹4,999",
       "badge": "Most booked",
       "style": "teal",
-      "features": ["Everything in Essential", "Thyroid profile", "ECG & chest X-ray", "Abdominal ultrasound", "Cardiology consult"],
+      "features": [
+        "Everything in Essential",
+        "Thyroid profile",
+        "ECG & chest X-ray",
+        "Abdominal ultrasound",
+        "Cardiology consult"
+      ],
       "cta": "Enquire about this package"
     },
     {
@@ -68,27 +223,92 @@
       "price": "₹6,499",
       "badge": "",
       "style": "ghost",
-      "features": ["Everything in Executive", "Bone density scan", "Vision & hearing screen", "HbA1c & vitamin panel", "Geriatric consult"],
+      "features": [
+        "Everything in Executive",
+        "Bone density scan",
+        "Vision & hearing screen",
+        "HbA1c & vitamin panel",
+        "Geriatric consult"
+      ],
       "cta": "Enquire about this package"
     }
   ],
   "facilities": [
-    { "icon": "icu",     "title": "ICU", "description": "24/7 critical care monitoring with a dedicated intensivist on every shift.", "photo": "" },
-    { "icon": "ot",      "title": "Modular Operation Theatres", "description": "Laminar-flow OTs built for complex, multi-specialty surgical procedures.", "photo": "" },
-    { "icon": "scan",    "title": "MRI & CT Scan", "description": "High-resolution imaging with same-day reporting for most scans.", "photo": "" },
-    { "icon": "pharmacy","title": "24/7 Pharmacy", "description": "In-house pharmacy stocked round the clock for inpatients and walk-ins.", "photo": "" }
+    {
+      "icon": "icu",
+      "title": "ICU",
+      "description": "24/7 critical care monitoring with a dedicated intensivist on every shift.",
+      "photo": ""
+    },
+    {
+      "icon": "ot",
+      "title": "Modular Operation Theatres",
+      "description": "Laminar-flow OTs built for complex, multi-specialty surgical procedures.",
+      "photo": ""
+    },
+    {
+      "icon": "scan",
+      "title": "MRI & CT Scan",
+      "description": "High-resolution imaging with same-day reporting for most scans.",
+      "photo": ""
+    },
+    {
+      "icon": "pharmacy",
+      "title": "24/7 Pharmacy",
+      "description": "In-house pharmacy stocked round the clock for inpatients and walk-ins.",
+      "photo": ""
+    }
   ],
   "testimonials": [
-    { "initials": "RS", "name": "Rahul S.",  "role": "Cardiology, OPD visit", "quote": "Booked online in the evening and was seeing the cardiologist by 9am the next day. No waiting around at the desk.", "photo": "" },
-    { "initials": "MK", "name": "Meena K.",  "role": "Pediatrics, OPD visit", "quote": "The live wait-time page saved us a wasted trip — we timed our visit for when it was quiet.", "photo": "" },
-    { "initials": "AP", "name": "Arvind P.", "role": "Emergency care", "quote": "Staff were calm and clear during a stressful night. The ambulance tracker meant we always knew what was happening.", "photo": "" },
-    { "initials": "FR", "name": "Fatima R.", "role": "Executive Checkup", "quote": "My father's executive checkup was thorough and the cardiology consult caught something we'd have missed otherwise.", "photo": "" }
+    {
+      "initials": "RS",
+      "name": "Rahul S.",
+      "role": "Cardiology, OPD visit",
+      "quote": "Booked online in the evening and was seeing the cardiologist by 9am the next day. No waiting around at the desk.",
+      "photo": ""
+    },
+    {
+      "initials": "MK",
+      "name": "Meena K.",
+      "role": "Pediatrics, OPD visit",
+      "quote": "The live wait-time page saved us a wasted trip — we timed our visit for when it was quiet.",
+      "photo": ""
+    },
+    {
+      "initials": "AP",
+      "name": "Arvind P.",
+      "role": "Emergency care",
+      "quote": "Staff were calm and clear during a stressful night. The ambulance tracker meant we always knew what was happening.",
+      "photo": ""
+    },
+    {
+      "initials": "FR",
+      "name": "Fatima R.",
+      "role": "Executive Checkup",
+      "quote": "My father's executive checkup was thorough and the cardiology consult caught something we'd have missed otherwise.",
+      "photo": ""
+    }
   ],
   "faq": [
-    { "question": "What insurance and TPAs do you accept?", "answer": "We support cashless treatment with most major health insurance providers and third-party administrators. Bring your policy details to the billing desk and we'll verify your coverage before admission." },
-    { "question": "Emergency room or an OPD appointment — which do I need?", "answer": "Go straight to Emergency (or call 108) for anything severe: chest pain, difficulty breathing, heavy bleeding, or loss of consciousness. For everything else, booking an OPD appointment gets you seen by the right specialist without the wait." },
-    { "question": "How do I get a copy of my medical records?", "answer": "Use the confirmation token from any appointment you've booked in the My Records section above to pull up your visit details. For full medical history, request a copy at the reception desk." },
-    { "question": "What should I bring to my first appointment?", "answer": "A photo ID, your insurance card if you have one, a list of current medications, and any prior test results or referral letters relevant to your visit." },
-    { "question": "Is parking available on site?", "answer": "Yes — visitor parking is available at the main entrance, with dedicated short-stay spots near Emergency." }
+    {
+      "question": "What insurance and TPAs do you accept?",
+      "answer": "We support cashless treatment with most major health insurance providers and third-party administrators. Bring your policy details to the billing desk and we'll verify your coverage before admission."
+    },
+    {
+      "question": "Emergency room or an OPD appointment — which do I need?",
+      "answer": "Go straight to Emergency (or call 108) for anything severe: chest pain, difficulty breathing, heavy bleeding, or loss of consciousness. For everything else, booking an OPD appointment gets you seen by the right specialist without the wait."
+    },
+    {
+      "question": "How do I get a copy of my medical records?",
+      "answer": "Use the confirmation token from any appointment you've booked in the My Records section above to pull up your visit details. For full medical history, request a copy at the reception desk."
+    },
+    {
+      "question": "What should I bring to my first appointment?",
+      "answer": "A photo ID, your insurance card if you have one, a list of current medications, and any prior test results or referral letters relevant to your visit."
+    },
+    {
+      "question": "Is parking available on site?",
+      "answer": "Yes — visitor parking is available at the main entrance, with dedicated short-stay spots near Emergency."
+    }
   ]
 }
