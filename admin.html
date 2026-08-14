@@ -1,0 +1,404 @@
+<title>Navya Hospital — Admin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #F7F2F5; --ink: #2A1A25; --ink-soft: #6E5A67; --surface: #FFFFFF;
+    --border: #E7DCE4; --teal-solid: #3D1E38; --coral: #F6C453; --danger: #B3413A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--ink); font-family: system-ui, -apple-system, "Segoe UI", sans-serif; line-height: 1.5; padding-bottom: 6rem; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 1.5rem 1.25rem; }
+  h1 { font-size: 1.4rem; margin: 0 0 0.25rem; }
+  h2 { font-size: 1.1rem; margin: 0 0 0.9rem; }
+  .sub { color: var(--ink-soft); font-size: 0.9rem; margin: 0 0 1.5rem; }
+  .gate { max-width: 360px; margin: 4rem auto; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; }
+  .gate input { width: 100%; padding: 0.6rem 0.7rem; border: 1px solid var(--border); border-radius: 8px; font-size: 1rem; margin: 0.8rem 0; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 1.2rem; margin-bottom: 1.2rem; }
+  .field { margin-bottom: 0.8rem; }
+  .field label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--ink-soft); margin-bottom: 0.3rem; }
+  .field input[type=text], .field input[type=number], .field textarea, .field select {
+    width: 100%; padding: 0.55rem 0.65rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.92rem; font-family: inherit;
+  }
+  .field textarea { resize: vertical; min-height: 3.5rem; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+  .item { border: 1px dashed var(--border); border-radius: 10px; padding: 0.9rem; margin-bottom: 0.9rem; position: relative; }
+  .item-remove { position: absolute; top: 0.6rem; right: 0.6rem; background: none; border: none; color: var(--danger); cursor: pointer; font-size: 0.8rem; font-weight: 700; }
+  .add-btn, .save-btn, .primary-btn {
+    appearance: none; border: none; cursor: pointer; font-weight: 700; font-size: 0.88rem;
+    padding: 0.55rem 1rem; border-radius: 999px; background: var(--teal-solid); color: #fff;
+  }
+  .add-btn { background: transparent; color: var(--teal-solid); border: 1px solid var(--teal-solid); }
+  .photo-preview { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; display: block; margin-bottom: 0.5rem; border: 1px solid var(--border); background: #eee; }
+  .bar {
+    position: fixed; bottom: 0; left: 0; right: 0; background: var(--surface); border-top: 1px solid var(--border);
+    padding: 0.9rem 1.25rem; display: flex; align-items: center; gap: 1rem; justify-content: flex-end;
+  }
+  .status { font-size: 0.85rem; color: var(--ink-soft); margin-right: auto; }
+  .status.err { color: var(--danger); }
+  .status.ok { color: #1F7A4D; }
+  .note { font-size: 0.8rem; color: var(--ink-soft); margin: -0.4rem 0 1rem; }
+  a.back { color: var(--ink-soft); font-size: 0.85rem; text-decoration: none; }
+</style>
+
+<div id="gate" class="gate">
+  <h1>Navya Hospital admin</h1>
+  <p class="sub">Enter the passcode to edit the site.</p>
+  <input type="password" id="passcode-input" placeholder="Passcode" autocomplete="current-password" />
+  <button class="primary-btn" id="unlock-btn" style="width:100%;">Unlock</button>
+  <p class="sub" id="gate-error" style="color:#B3413A;"></p>
+</div>
+
+<div id="app" class="wrap" style="display:none;">
+  <a class="back" href="index.html">&larr; View live site</a>
+  <h1>Edit site content</h1>
+  <p class="sub">Changes go live a minute or two after you save.</p>
+
+  <section class="card">
+    <h2>Hero section</h2>
+    <div class="field"><label>Eyebrow text</label><input type="text" id="hero-eyebrow" /></div>
+    <div class="row2">
+      <div class="field"><label>Heading — before the highlighted word</label><input type="text" id="hero-headingPrefix" /></div>
+      <div class="field"><label>Heading — highlighted word</label><input type="text" id="hero-headingEmphasis" /></div>
+    </div>
+    <div class="field"><label>Heading — after the highlighted word</label><input type="text" id="hero-headingSuffix" /></div>
+    <div class="field"><label>Paragraph</label><textarea id="hero-paragraph"></textarea></div>
+    <div class="field"><label>Trust badge line</label><input type="text" id="hero-trustBadge" /></div>
+    <div class="row2">
+      <div class="field"><label>Years serving</label><input type="number" id="stats-years" /></div>
+      <div class="field"><label>City name</label><input type="text" id="stats-city" /></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Health packages</h2>
+    <div id="packages-list"></div>
+    <button type="button" class="add-btn" data-add="packages">+ Add package</button>
+  </section>
+
+  <section class="card">
+    <h2>Facilities</h2>
+    <div id="facilities-list"></div>
+    <button type="button" class="add-btn" data-add="facilities">+ Add facility</button>
+  </section>
+
+  <section class="card">
+    <h2>Patient testimonials</h2>
+    <div id="testimonials-list"></div>
+    <button type="button" class="add-btn" data-add="testimonials">+ Add testimonial</button>
+  </section>
+
+  <section class="card">
+    <h2>Departments</h2>
+    <p class="note">Names and descriptions only — departments can't be added or removed here since doctors are linked to them.</p>
+    <div id="departments-list"></div>
+  </section>
+
+  <section class="card">
+    <h2>Doctors</h2>
+    <div id="doctors-list"></div>
+    <button type="button" class="add-btn" data-add="doctors">+ Add doctor</button>
+  </section>
+
+  <section class="card">
+    <h2>FAQ</h2>
+    <div id="faq-list"></div>
+    <button type="button" class="add-btn" data-add="faq">+ Add question</button>
+  </section>
+</div>
+
+<div class="bar" id="save-bar" style="display:none;">
+  <span class="status" id="save-status"></span>
+  <button class="save-btn" id="save-btn">Save changes</button>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var content = null;
+  var passcode = "";
+
+  function esc(s) { return String(s == null ? "" : s).replace(/"/g, "&quot;"); }
+
+  function setStatus(text, cls) {
+    var el = document.getElementById("save-status");
+    el.textContent = text;
+    el.className = "status" + (cls ? " " + cls : "");
+  }
+
+  /* ---------- Repeatable section builders ---------- */
+
+  function fileToDataUrl(file) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader();
+      reader.onload = function () { resolve(reader.result); };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function photoField(containerEl, item) {
+    var wrap = document.createElement("div");
+    wrap.className = "field";
+    var label = document.createElement("label");
+    label.textContent = "Photo (optional — leave blank to keep the icon/initials)";
+    wrap.appendChild(label);
+    if (item.photo) {
+      var img = document.createElement("img");
+      img.className = "photo-preview";
+      img.src = item.photo;
+      wrap.appendChild(img);
+    }
+    var input = document.createElement("input");
+    input.type = "file";
+    input.accept = "image/*";
+    input.addEventListener("change", function () {
+      var file = input.files[0];
+      if (!file) return;
+      fileToDataUrl(file).then(function (dataUrl) { item.photo = dataUrl; });
+    });
+    wrap.appendChild(input);
+    containerEl.appendChild(wrap);
+  }
+
+  function textField(containerEl, labelText, item, key, opts) {
+    opts = opts || {};
+    var wrap = document.createElement("div");
+    wrap.className = "field";
+    var label = document.createElement("label");
+    label.textContent = labelText;
+    wrap.appendChild(label);
+    var input = document.createElement(opts.textarea ? "textarea" : "input");
+    if (!opts.textarea) input.type = opts.number ? "number" : "text";
+    input.value = item[key] == null ? "" : item[key];
+    input.addEventListener("input", function () {
+      item[key] = opts.number ? Number(input.value) : input.value;
+    });
+    wrap.appendChild(input);
+    containerEl.appendChild(wrap);
+    return input;
+  }
+
+  function selectField(containerEl, labelText, item, key, options) {
+    var wrap = document.createElement("div");
+    wrap.className = "field";
+    var label = document.createElement("label");
+    label.textContent = labelText;
+    wrap.appendChild(label);
+    var select = document.createElement("select");
+    options.forEach(function (opt) {
+      var o = document.createElement("option");
+      o.value = opt.value;
+      o.textContent = opt.label;
+      if (item[key] === opt.value) o.selected = true;
+      select.appendChild(o);
+    });
+    select.addEventListener("change", function () { item[key] = select.value; });
+    wrap.appendChild(select);
+    containerEl.appendChild(wrap);
+  }
+
+  function featuresField(containerEl, item) {
+    var wrap = document.createElement("div");
+    wrap.className = "field";
+    var label = document.createElement("label");
+    label.textContent = "Features (one per line)";
+    wrap.appendChild(label);
+    var textarea = document.createElement("textarea");
+    textarea.value = (item.features || []).join("\n");
+    textarea.addEventListener("input", function () {
+      item.features = textarea.value.split("\n").map(function (s) { return s.trim(); }).filter(Boolean);
+    });
+    wrap.appendChild(textarea);
+    containerEl.appendChild(wrap);
+  }
+
+  function removeBtn(itemEl, list, item) {
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "item-remove";
+    btn.textContent = "Remove";
+    btn.addEventListener("click", function () {
+      var idx = list.indexOf(item);
+      if (idx !== -1) list.splice(idx, 1);
+      renderAll();
+    });
+    itemEl.appendChild(btn);
+  }
+
+  function renderPackages() {
+    var host = document.getElementById("packages-list");
+    host.innerHTML = "";
+    content.packages.forEach(function (p) {
+      var el = document.createElement("div");
+      el.className = "item";
+      textField(el, "Package name", p, "name");
+      textField(el, "Price (e.g. ₹1,999)", p, "price");
+      textField(el, "Badge (e.g. Most booked — leave blank for none)", p, "badge");
+      selectField(el, "Button style", p, "style", [{ value: "ghost", label: "Outline" }, { value: "teal", label: "Solid" }]);
+      featuresField(el, p);
+      textField(el, "Button text", p, "cta");
+      removeBtn(el, content.packages, p);
+      host.appendChild(el);
+    });
+  }
+
+  function renderFacilities() {
+    var host = document.getElementById("facilities-list");
+    host.innerHTML = "";
+    content.facilities.forEach(function (f) {
+      var el = document.createElement("div");
+      el.className = "item";
+      textField(el, "Title", f, "title");
+      textField(el, "Description", f, "description", { textarea: true });
+      selectField(el, "Icon (used when there's no photo)", f, "icon", [
+        { value: "icu", label: "Heart monitor" }, { value: "ot", label: "Clock" },
+        { value: "scan", label: "Scanner" }, { value: "pharmacy", label: "Pharmacy" }
+      ]);
+      photoField(el, f);
+      removeBtn(el, content.facilities, f);
+      host.appendChild(el);
+    });
+  }
+
+  function renderTestimonials() {
+    var host = document.getElementById("testimonials-list");
+    host.innerHTML = "";
+    content.testimonials.forEach(function (t) {
+      var el = document.createElement("div");
+      el.className = "item";
+      textField(el, "Patient name", t, "name");
+      textField(el, "Initials (shown when there's no photo)", t, "initials");
+      textField(el, "Role / visit type", t, "role");
+      textField(el, "Quote", t, "quote", { textarea: true });
+      photoField(el, t);
+      removeBtn(el, content.testimonials, t);
+      host.appendChild(el);
+    });
+  }
+
+  function renderDepartments() {
+    var host = document.getElementById("departments-list");
+    host.innerHTML = "";
+    content.departments.forEach(function (d) {
+      var el = document.createElement("div");
+      el.className = "item";
+      textField(el, "Name", d, "name");
+      textField(el, "Description", d, "blurb", { textarea: true });
+      host.appendChild(el);
+    });
+  }
+
+  function renderDoctors() {
+    var host = document.getElementById("doctors-list");
+    host.innerHTML = "";
+    var deptOptions = content.departments.map(function (d) { return { value: d.id, label: d.name }; });
+    content.doctors.forEach(function (doc) {
+      var el = document.createElement("div");
+      el.className = "item";
+      textField(el, "Name", doc, "name");
+      selectField(el, "Department", doc, "deptId", deptOptions);
+      selectField(el, "Status", doc, "status", [
+        { value: "Available", label: "Available" }, { value: "In Consultation", label: "In Consultation" },
+        { value: "On Break", label: "On Break" }, { value: "Off Duty", label: "Off Duty" }
+      ]);
+      textField(el, "Years of experience", doc, "exp", { number: true });
+      removeBtn(el, content.doctors, doc);
+      host.appendChild(el);
+    });
+  }
+
+  function renderFaqItems() {
+    var host = document.getElementById("faq-list");
+    host.innerHTML = "";
+    content.faq.forEach(function (f) {
+      var el = document.createElement("div");
+      el.className = "item";
+      textField(el, "Question", f, "question");
+      textField(el, "Answer", f, "answer", { textarea: true });
+      removeBtn(el, content.faq, f);
+      host.appendChild(el);
+    });
+  }
+
+  function renderHero() {
+    document.getElementById("hero-eyebrow").value = content.hero.eyebrow || "";
+    document.getElementById("hero-headingPrefix").value = content.hero.headingPrefix || "";
+    document.getElementById("hero-headingEmphasis").value = content.hero.headingEmphasis || "";
+    document.getElementById("hero-headingSuffix").value = content.hero.headingSuffix || "";
+    document.getElementById("hero-paragraph").value = content.hero.paragraph || "";
+    document.getElementById("hero-trustBadge").value = content.hero.trustBadge || "";
+    document.getElementById("stats-years").value = content.stats.yearsServing || 0;
+    document.getElementById("stats-city").value = content.stats.cityName || "";
+
+    ["eyebrow", "headingPrefix", "headingEmphasis", "headingSuffix", "paragraph", "trustBadge"].forEach(function (key) {
+      document.getElementById("hero-" + key).addEventListener("input", function (e) { content.hero[key] = e.target.value; });
+    });
+    document.getElementById("stats-years").addEventListener("input", function (e) { content.stats.yearsServing = Number(e.target.value); });
+    document.getElementById("stats-city").addEventListener("input", function (e) { content.stats.cityName = e.target.value; });
+  }
+
+  function renderAll() {
+    renderPackages();
+    renderFacilities();
+    renderTestimonials();
+    renderDepartments();
+    renderDoctors();
+    renderFaqItems();
+  }
+
+  document.querySelectorAll("[data-add]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var key = btn.dataset.add;
+      var blank = {
+        packages: { name: "New package", price: "₹0", badge: "", style: "ghost", features: [], cta: "Enquire about this package" },
+        facilities: { title: "New facility", description: "", icon: "icu", photo: "" },
+        testimonials: { initials: "", name: "", role: "", quote: "", photo: "" },
+        doctors: { name: "Dr. ", deptId: content.departments[0] ? content.departments[0].id : "", status: "Available", exp: 1 },
+        faq: { question: "", answer: "" }
+      }[key];
+      content[key].push(blank);
+      renderAll();
+    });
+  });
+
+  document.getElementById("save-btn").addEventListener("click", function () {
+    setStatus("Saving…");
+    fetch("/api/save-content", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ passcode: passcode, content: content })
+    })
+      .then(function (res) { return res.json().then(function (body) { return { ok: res.ok, body: body }; }); })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.body && r.body.error ? r.body.error : "Save failed");
+        setStatus("Saved — the live site will update shortly.", "ok");
+      })
+      .catch(function (err) { setStatus(err.message, "err"); });
+  });
+
+  function unlock() {
+    passcode = document.getElementById("passcode-input").value;
+    if (!passcode) return;
+    fetch("content.json", { cache: "no-store" })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        content = data;
+        document.getElementById("gate").style.display = "none";
+        document.getElementById("app").style.display = "block";
+        document.getElementById("save-bar").style.display = "flex";
+        renderHero();
+        renderAll();
+      })
+      .catch(function () {
+        document.getElementById("gate-error").textContent = "Could not load site content.";
+      });
+  }
+
+  document.getElementById("unlock-btn").addEventListener("click", unlock);
+  document.getElementById("passcode-input").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") unlock();
+  });
+})();
+</script>
